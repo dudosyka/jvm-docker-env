@@ -1,4 +1,4 @@
-# jvm-web-docker
+# Jvm Docker Env (JDE)
 > Docker compose configuration for running JVM-based server with nginx as proxy
 
 ## Services
