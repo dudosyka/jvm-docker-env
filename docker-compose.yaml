@@ -35,3 +35,22 @@ services:
       - ./mariadb/start_dump:/docker-entrypoint-initdb.d
     networks:
       - iternal
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    volumes:
+      - ./prometheus:/etc/prometheus/
+      - ./prometheus/home:/home
+    networks:
+      - iternal
+  grafana:
+    image: grafana/grafana:latest
+#    You can exposed ports if you need or proxy it through nginx
+#    ports:
+#      - 3000:XXXX
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+    networks:
+      - iternal
+    depends_on:
+      - prometheus

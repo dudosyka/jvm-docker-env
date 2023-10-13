@@ -1,0 +1,10 @@
+[
+  {
+    "labels": {
+      "job": "TestService"
+    },
+    "targets": [
+      "host.docker.internal:55915"
+    ]
+  }
+]
