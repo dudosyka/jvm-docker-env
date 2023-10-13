@@ -8,23 +8,29 @@ services:
     build: ./jvm
     volumes:
       - ./jvm/dist:/opt/application
+      - ./jvm/home:/home
     networks:
       - iternal
       - exposed
     depends_on:
       - maria
+    entrypoint: /bin/bash /home/startup.sh
   nginx:
     build: ./nginx
     ports:
       - "80:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/home:/home
     networks:
       - exposed
+    depends_on:
+      - jvm
+    entrypoint: /bin/bash /home/startup.sh
   maria:
     build: ./mariadb
     volumes:
-      - ./mariadb/data:/root
-      - ./mariadb/start_dump/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./mariadb/home:/home
+      - ./mariadb/start_dump:/docker-entrypoint-initdb.d
     networks:
       - iternal

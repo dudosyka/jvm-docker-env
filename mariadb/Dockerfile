@@ -5,5 +5,3 @@ ENV MARIADB_PASSWORD=my_cool_secret
 ENV MARIADB_ROOT_PASSWORD=my-secret-pw
 
 WORKDIR /root
-
-EXPOSE 3306
