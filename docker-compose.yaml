@@ -1,0 +1,30 @@
+networks:
+  iternal:
+    name: iternal
+  exposed:
+    name: exposed
+services:
+  jvm:
+    build: ./jvm
+    volumes:
+      - ./jvm/dist:/opt/application
+    networks:
+      - iternal
+      - exposed
+    depends_on:
+      - maria
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - exposed
+  maria:
+    build: ./mariadb
+    volumes:
+      - ./mariadb/data:/root
+      - ./mariadb/start_dump/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      - iternal
