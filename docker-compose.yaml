@@ -14,6 +14,13 @@ services:
       - exposed
     depends_on:
       - maria
+#    Here u can set RAM and CPU limits for the container
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '1.5'
+#          memory: 7168M #7GB
+    restart: always
     entrypoint: /bin/bash /home/startup.sh
   nginx:
     build: ./nginx
@@ -35,6 +42,12 @@ services:
       - ./mariadb/start_dump:/docker-entrypoint-initdb.d
     networks:
       - iternal
+#    Here u can set RAM and CPU limits for the container
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '1.5'
+#          memory: 7168M #7GB
   prometheus:
     image: prom/prometheus
     restart: always
