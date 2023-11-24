@@ -1,5 +1,4 @@
-FROM eclipse-temurin:11
+FROM eclipse-temurin:latest
 
 RUN mkdir /opt/application
 
-CMD ["java", "-jar", "/opt/application/app.jar"]
