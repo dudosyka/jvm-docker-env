@@ -14,6 +14,7 @@ services:
       - exposed
     depends_on:
       - maria
+      - postgres
 #    Here u can set RAM and CPU limits for the container
 #    deploy:
 #      resources:
@@ -67,3 +68,19 @@ services:
       - iternal
     depends_on:
       - prometheus
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: my-secret-pw
+    volumes:
+      - ./postgres/home:/home
+      - ./postgres/root:/root
+    networks:
+      - iternal
+#    Here u can set RAM and CPU limits for the container
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '1.5'
+#          memory: 7168M #7G
