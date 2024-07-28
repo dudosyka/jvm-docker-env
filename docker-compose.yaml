@@ -69,15 +69,18 @@ services:
     depends_on:
       - prometheus
   postgres:
-    image: postgres
+    build: ./postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: my-secret-pw
     volumes:
       - ./postgres/home:/home
       - ./postgres/root:/root
+      - ./postgres/init.d:/docker-entrypoint-initdb.d
     networks:
       - iternal
+    ports:
+      - "5432:5432"
 #    Here u can set RAM and CPU limits for the container
 #    deploy:
 #      resources:

@@ -61,6 +61,11 @@ That network contains Nginx container which used to proxy Jvm apps and Jvm itsel
     ./data <-- Linked to /var/lib/grafana at the container
     ktor_status_dashboard.json <-- Grafana dashboard example configuration (for Ktor framework based application) 
       
+  ./mariadb <-- Mariadb container configuration
+    ./home <-- Linked to /home at the container
+      You can use it for file communication with container (for example for dumps export)
+    ./init.d <-- Linked to /docker-entrypoint-initdb.d 
+      Here you can place some initialization SQL files for example to load dumps or something
   docker-compose.yml <-- Compose configuration
 </pre>
 
